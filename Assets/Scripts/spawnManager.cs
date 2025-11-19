@@ -4,7 +4,7 @@ public class spawnManager : MonoBehaviour
 {
   
   public GameObject enemyPrefab;
-  private float spawnRange;
+  private float spawnRange=9;
     void Start()
     { 
         Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
@@ -16,8 +16,8 @@ public class spawnManager : MonoBehaviour
     private Vector3 GenerateSpawnPosition()
     {
         float spawnpPosX=Random.Range(-spawnRange,spawnRange);
-        float spawnpPosY=Random.Range(-spawnRange,spawnRange);
-        Vector3 randomPos = new Vector3(spawnpPosX,0,spawnpPosY);
+        float spawnpPosZ=Random.Range(-spawnRange,spawnRange);
+        Vector3 randomPos = new Vector3(spawnpPosX,0,spawnpPosZ);
         return randomPos;
     }
 }
