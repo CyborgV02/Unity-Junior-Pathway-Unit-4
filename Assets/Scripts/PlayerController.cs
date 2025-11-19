@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public bool hasPowerup = false;
 
     private GameObject focalPoint;
+
+    public GameObject powerUpIndicator;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         float forwardInput = Input.GetAxis("Vertical");
         rb.AddForce(focalPoint.transform.forward * forwardInput*speed);
+        powerUpIndicator.transform.position=transform.position + new UnityEngine.Vector3(0,-0.5f,0);
     }
 
     void OnTriggerEnter(Collider other)
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             hasPowerup=true;
             StartCoroutine(PowerUpCountdownRoutine());
+            powerUpIndicator.SetActive(true);
         }
     }
 
@@ -51,6 +55,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(7);
         hasPowerup=false;
+        powerUpIndicator.SetActive(false);
     }
 
 
