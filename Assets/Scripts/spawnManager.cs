@@ -4,31 +4,24 @@ public class spawnManager : MonoBehaviour
 {
   public GameObject enemyPrefab;
   private float spawnRange=9;
-
   public int waveCount=1;
-
   public GameObject powerUpprefab;
-
   public float enemyCount;
     void Start()
     { 
-        Instantiate(powerUpprefab,GenerateSpawnPosition(),powerUpprefab.transform.rotation);
-     spawnEnemyWave(waveCount);
+     Instantiate(powerUpprefab,GenerateSpawnPosition(),powerUpprefab.transform.rotation);
+     spawnEnemyWave(1);
     }
     void Update()
     {
-     enemyCount=FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;   
-
+     enemyCount=FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
      if (enemyCount == 0)
         {
             Instantiate(powerUpprefab,GenerateSpawnPosition(),powerUpprefab.transform.rotation);
             waveCount++;
             spawnEnemyWave(waveCount);
-            
         }
     }
-
-   
     private Vector3 GenerateSpawnPosition()
     {
         float spawnpPosX=Random.Range(-spawnRange,spawnRange);
@@ -41,8 +34,7 @@ public class spawnManager : MonoBehaviour
     {
         for (int i = 0; i < enemiestospawn ; i++)
         {
-               Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+             Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         }
     }
-
 }
